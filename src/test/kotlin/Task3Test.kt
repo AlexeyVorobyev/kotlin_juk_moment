@@ -35,22 +35,40 @@ class Task3Test {
         assertEquals(0, func(0))
     }
 
-//    /**
-//     * @see Task2.sumDigitsDividedBy3
-//     *
-//     * @author A.Vorobyev <mister.alex49@yandex.ru>
-//     * */
-//    @Test
-//    fun `sumDigitsDividedBy3 test`() {
-//        val func = Task2()::sumDigitsDividedBy3
-//        assertEquals(3, func(1234))
-//        assertEquals(15, func(33333))
-//        assertEquals(0, func(10000))
-//        assertEquals(0, func(1))
-//        assertEquals(0, func(-1))
-//        assertEquals(0, func(0))
-//        assertEquals(18, func(-3690))
-//    }
+    /**
+     * @see Task3.sumDigitsDividedBy3Up
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    @Test
+    fun `sumDigitsDividedBy3Up test`() {
+        val func = Task3()::sumDigitsDividedBy3Up
+        assertEquals(3, func(1234))
+        assertEquals(15, func(33333))
+        assertEquals(0, func(10000))
+        assertEquals(0, func(1))
+        assertEquals(0, func(-1))
+        assertEquals(0, func(0))
+        assertEquals(18, func(-3690))
+    }
+
+    /**
+     * @see Task3.sumDigitsDividedBy3Down
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    @Test
+    fun `sumDigitsDividedBy3Down test`() {
+        val func = Task3()::sumDigitsDividedBy3Down
+        assertEquals(3, func(1234))
+        assertEquals(15, func(33333))
+        assertEquals(0, func(10000))
+        assertEquals(0, func(1))
+        assertEquals(0, func(-1))
+        assertEquals(0, func(0))
+        assertEquals(18, func(-3690))
+    }
+
 //
 //    /**
 //     * @see Task2.amountOfDividers
