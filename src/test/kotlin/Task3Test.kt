@@ -69,21 +69,38 @@ class Task3Test {
         assertEquals(18, func(-3690))
     }
 
-//
-//    /**
-//     * @see Task2.amountOfDividers
-//     *
-//     * @author A.Vorobyev <mister.alex49@yandex.ru>
-//     * */
-//    @Test
-//    fun `amountOfDividers test`() {
-//        val func = Task2()::amountOfDividers
-//        assertEquals(16, func(1000))
-//        assertEquals(1, func(1))
-//        assertEquals(2, func(2))
-//        assertEquals(2, func(3))
-//        assertEquals(2, func(11))
-//        assertEquals(24, func(-3690))
-//        assertEquals(0, func(0))
-//    }
+
+    /**
+     * @see Task3.amountOfDividersUp
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    @Test
+    fun `amountOfDividersUp test`() {
+        val func = Task3()::amountOfDividersUp
+        assertEquals(16, func(1000))
+        assertEquals(1, func(1))
+        assertEquals(2, func(2))
+        assertEquals(2, func(3))
+        assertEquals(2, func(11))
+        assertEquals(24, func(-3690))
+        assertEquals(0, func(0))
+    }
+
+    /**
+     * @see Task3.amountOfDividersDown
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    @Test
+    fun `amountOfDividersDown test`() {
+        val func = Task3()::amountOfDividersDown
+        assertEquals(16, func(1000))
+        assertEquals(1, func(1))
+        assertEquals(2, func(2))
+        assertEquals(2, func(3))
+        assertEquals(2, func(11))
+        assertEquals(24, func(-3690))
+        assertEquals(0, func(0))
+    }
 }

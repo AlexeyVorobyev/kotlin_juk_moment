@@ -105,4 +105,63 @@ class Task3 {
         }
     }
 
+    /**
+     * Функция поиска количества делителей числа вверх
+     *
+     * @param number {Int} - Число
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun amountOfDividersUp(number: Int): Int =
+        amountOfDividersUpInternal(number.absoluteValue, 1)
+
+    /**
+     * Внутренняя функция поиска количества делителей числа вверх
+     *
+     * @param number {Int} - Число
+     * @param divider {Int} - Делитель
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    private fun amountOfDividersUpInternal(number: Int, divider: Int = 1): Int {
+        if (divider > number) {
+            return 0
+        }
+
+        return listOf(
+            if (number % divider == 0) 1 else 0,
+            amountOfDividersUpInternal(number, divider + 1)
+        ).reduce {it, acc -> acc + it }
+    }
+
+    /**
+     * Функция поиска количества делителей числа вниз
+     *
+     * @param number {Int} - Число
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun amountOfDividersDown(number: Int): Int =
+        amountOfDividersDownInternal(number.absoluteValue, 1, 0)
+
+    /**
+     * Внутренняя функция поиска количества делителей числа вниз
+     *
+     * @param number {Int} - Число
+     * @param divider {Int} - Делитель
+     * @param amountOfDividers {Int} - Количество делителей
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    private tailrec fun amountOfDividersDownInternal(number: Int, divider: Int = 1, amountOfDividers: Int = 0): Int {
+        if (divider > number) {
+            return amountOfDividers
+        }
+
+        return amountOfDividersDownInternal(
+            number,
+            divider + 1,
+            if (number % divider == 0) amountOfDividers + 1 else amountOfDividers
+        )
+    }
 }
