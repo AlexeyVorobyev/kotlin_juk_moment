@@ -3,6 +3,11 @@ import org.junit.jupiter.api.Test
 import ru.lexxv.university.Task2
 
 class Task2Test {
+    /**
+     * @see Task2.maxDigit
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
     @Test
     fun `maxDigit test`() {
         val func = Task2()::maxDigit
@@ -14,6 +19,11 @@ class Task2Test {
         assertEquals(0, func(0))
     }
 
+    /**
+     * @see Task2.sumDigitsDividedBy3
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
     @Test
     fun `sumDigitsDividedBy3 test`() {
         val func = Task2()::sumDigitsDividedBy3
@@ -24,5 +34,22 @@ class Task2Test {
         assertEquals(0, func(-1))
         assertEquals(0, func(0))
         assertEquals(18, func(-3690))
+    }
+
+    /**
+     * @see Task2.amountOfDividers
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    @Test
+    fun `amountOfDividers test`() {
+        val func = Task2()::amountOfDividers
+        assertEquals(16, func(1000))
+        assertEquals(1, func(1))
+        assertEquals(2, func(2))
+        assertEquals(2, func(3))
+        assertEquals(2, func(11))
+        assertEquals(24, func(-3690))
+        assertEquals(0, func(0))
     }
 }

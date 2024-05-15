@@ -25,4 +25,14 @@ class Task2 {
             .map { it.toString().toInt() }
             .stream().filter { it % 3 == 0 }
             .toList().fold(0) { acc, it -> acc + it }
+
+    /**
+     * Функция поиска количества делителей числа
+     *
+     * @param number {Int} - Число
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun amountOfDividers(number: Int): Int =
+        (1..number.absoluteValue).fold(0) { acc, it -> if (number % it == 0) acc + 1 else acc }
 }
