@@ -1,0 +1,4 @@
+123, maxDigit
+256, maxDigit
+3, sumDigitsDividedBy3
+1000, amountOfDividers

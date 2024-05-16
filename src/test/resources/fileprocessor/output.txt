@@ -1,0 +1,4 @@
+123, maxDigit, 3
+256, maxDigit, 6
+3, sumDigitsDividedBy3, 3
+1000, amountOfDividers, 16

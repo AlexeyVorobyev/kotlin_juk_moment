@@ -5,8 +5,6 @@ import ru.lexxv.university.Task2
 class Task2Test {
     /**
      * @see Task2.maxDigit
-     *
-     * @author A.Vorobyev <mister.alex49@yandex.ru>
      * */
     @Test
     fun `maxDigit test`() {
@@ -21,8 +19,6 @@ class Task2Test {
 
     /**
      * @see Task2.sumDigitsDividedBy3
-     *
-     * @author A.Vorobyev <mister.alex49@yandex.ru>
      * */
     @Test
     fun `sumDigitsDividedBy3 test`() {
