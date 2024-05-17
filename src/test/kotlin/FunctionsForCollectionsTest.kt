@@ -35,4 +35,54 @@ class FunctionsForCollectionsTest {
         assertEquals(555, result[3].second)
         assertEquals(1, result[3].third)
     }
+
+    @Test
+    fun `findMinIndex test`() {
+        val func = FunctionsForCollections::findMinIndex
+
+        assertEquals(2, func(listOf(2,4,1)))
+        assertEquals(0, func(setOf(2,4)))
+    }
+
+    @Test
+    fun `findExtraordinaryElement test`() {
+        val func = FunctionsForCollections::findExtraordinaryElement
+
+        assertEquals(10, func(listOf(2,2,2,2,2,10,2,2)))
+        assertEquals(2, func(setOf(2,4,4,4,4,4,4)))
+    }
+
+    @Test
+    fun `findTwoMin test`() {
+        val func = FunctionsForCollections::findTwoMin
+
+        assertEquals(Pair(2,2), func(listOf(2,2,2,2,2,10,2,2)))
+        assertEquals(Pair(2,4), func(setOf(2,5,4,5,4,4,4)))
+    }
+
+    @Test
+    fun `replaceMaxMinPosition test`() {
+        val func = FunctionsForCollections::replaceMaxMinPosition
+
+        assertEquals(4, func(listOf(1,2,3,4))[0])
+        assertEquals(1, func(listOf(1,2,3,4))[3])
+        assertEquals(2, func(listOf(1,2,3,4))[1])
+        assertEquals(3, func(listOf(1,2,3,4))[2])
+    }
+
+    @Test
+    fun `countEvenNumbers test`() {
+        val func = FunctionsForCollections::countEvenNumbers
+
+        assertEquals(2, func(listOf(1,2,3,4)))
+        assertEquals(0, func(listOf(1,1,3,3)))
+    }
+
+    @Test
+    fun `findBetweenFirstAndLastMax test`() {
+        val func = FunctionsForCollections::findBetweenFirstAndLastMax
+
+        assertEquals(listOf(2,3), func(listOf(1,2,3,4)))
+        assertEquals(listOf(2,3,4), func(listOf(1,2,3,4,4)))
+    }
 }

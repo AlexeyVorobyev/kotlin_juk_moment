@@ -102,4 +102,75 @@ object FunctionsForCollections {
                 it
             }
         )().result
+
+    /**
+     * Функция поиска индекса минимального числа в итерируемом объекте
+     *
+     * @param iterable {Iterable<Int>} - итерируемый объект
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun findMinIndex(iterable: Iterable<Int>) = iterable.indexOf(iterable.min())
+
+    /**
+     * Функция поиска экстраординарного числа в итерируемом объекте
+     *
+     * @param iterable {Iterable<Int>} - итерируемый объект
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun findExtraordinaryElement(iterable: Iterable<Int>) =
+        iterable.toSet().let {
+            iterable.filter { _it -> it.toList()[0] == _it }.let { _it ->
+                if (_it.size == 1) _it[0] else it.toList()[1]
+            }
+        }
+
+    /**
+     * Функция поиска двух наименьших чисел в итерируемом объекте
+     *
+     * @param iterable {Iterable<Int>} - итерируемый объект
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun findTwoMin(iterable: Iterable<Int>): Pair<Int, Int> =
+        iterable.sorted().take(2).let { Pair(it[0], it[1]) }
+
+    /**
+     * Функция смены позиции максимального и минимального элемента в итерируемом объекте
+     *
+     * @param iterable {Iterable<Int>} - итерируемый объект
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun replaceMaxMinPosition(iterable: Iterable<Int>): List<Int> =
+        iterable.sorted().let { sortedIterable ->
+            iterable.mapIndexed { index, it ->
+                when (index) {
+                    0 -> sortedIterable[sortedIterable.size - 1]
+                    sortedIterable.size - 1 -> sortedIterable[0]
+                    else -> it
+                }
+            }
+        }
+
+    /**
+     * Функция поиска количества четных элементов в итерируемом объекте
+     *
+     * @param iterable {Iterable<Int>} - итерируемый объект
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun countEvenNumbers(iterable: Iterable<Int>): Int =
+        iterable.toList().fold(0) { acc, it -> if (it % 2 == 0) acc + 1 else acc }
+
+    /**
+     * Функция поиска элементов находящихся между первым и последним максимальным в итерируемом объекте
+     *
+     * @param iterable {Iterable<Int>} - итерируемый объект
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun findBetweenFirstAndLastMax(iterable: Iterable<Int>): List<Int> =
+        iterable.toList().subList(1, iterable.indexOfLast { it == iterable.max() })
 }
