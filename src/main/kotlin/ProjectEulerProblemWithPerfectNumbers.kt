@@ -1,49 +1,11 @@
 package ru.lexxv.university
 
+import ru.lexxv.university.RecursiveHelperFunctions.recursiveIterateConstructor
 import kotlin.math.absoluteValue
 
 object ProjectEulerProblemWithPerfectNumbers {
 
     private const val MAX_NUMBER = 20000
-
-
-    /**
-     * Универсальная функция реализующая итерацию tail рекурсией
-     * Возвращает функцию, триггер начала итерации
-     *
-     * На уровне компилятора осуществляется преобразование хвостовой рекурсии в цикл,
-     * чтобы избежать ошибки переполнения стека (Макс глубина стека - 9000, кол-во "итераций" - 20000)
-     *
-     * @param initialValue {T} - начальное значение
-     * @param interruptConditionCallback {(T, Int) -> Boolean} - Колбек условия прерывания рекурсии, в случае false прерывает его.
-     * На вход поступает текущее значение и шаг рекурсии
-     * @param valueTransformCallback {(T, Int) -> T} - Колбек преобразования текущего значения
-     * На вход поступает текущее значение и шаг рекурсии
-     *
-     * @author A.Vorobyev <mister.alex49@yandex.ru>
-     * */
-    private fun <T> recursiveIterateConstructor(
-        initialValue: T,
-        interruptConditionCallback: (T, Int) -> Boolean,
-        valueTransformCallback: (T, Int) -> T,
-    ): () -> T {
-        // То самое замыкание да да
-        var iteration = -1
-        var value = initialValue
-
-        tailrec fun recursiveIterateInternal(): T {
-            iteration++
-            if (!interruptConditionCallback(value, iteration)) {
-                return value
-            }
-
-            value = valueTransformCallback(value, iteration)
-
-            return recursiveIterateInternal()
-        }
-
-        return ::recursiveIterateInternal
-    }
 
 
     /**
@@ -112,6 +74,9 @@ object ProjectEulerProblemWithPerfectNumbers {
     /**
      * Функция подсчёта суммы делителей числа
      *
+     * @param number {Int} - число
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
      * */
     private fun calcDividersSum(number: Int): Int {
         data class ValueCarrier(
