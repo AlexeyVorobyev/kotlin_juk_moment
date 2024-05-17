@@ -81,18 +81,14 @@ object ProjectEulerProblemWithPerfectNumbers {
      * */
     fun checkNumber(number: Int): Boolean {
         val valueCarrier = object {
-            var firstNum: Int = number / 2
-            var secondNum: Int = number / 2
+            var firstNum: Int = 1
+            var secondNum: Int = number - 1
             var result: Boolean = false
-        }
-
-        if (number % 2 == 1) {
-            valueCarrier.firstNum++
         }
 
         return recursiveIterateConstructor(
             valueCarrier,
-            { it, _ -> !it.result && (it.firstNum < number * 20000 || it.secondNum > number * -20000) },
+            { it, _ -> !it.result && it.firstNum <= it.secondNum && it.secondNum > it.firstNum },
             { it, _ ->
                 if (
                     calcDividersSum(it.firstNum) > it.firstNum.absoluteValue
