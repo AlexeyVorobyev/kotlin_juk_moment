@@ -92,12 +92,18 @@ object ProjectEulerProblemWithPerfectNumbers {
 
         return recursiveIterateConstructor(
             valueCarrier,
-            { it, _ -> !it.result && (it.firstNum < number*2 || it.secondNum > number*-2) },
+            { it, _ -> !it.result && (it.firstNum < number * 20000 || it.secondNum > number * -20000) },
             { it, _ ->
                 if (
-                    calcDividersSum(it.firstNum) > it.firstNum
-                    && calcDividersSum(it.secondNum) > it.secondNum
+                    calcDividersSum(it.firstNum) > it.firstNum.absoluteValue
+                    && calcDividersSum(it.secondNum) > it.secondNum.absoluteValue
                 ) {
+                    println(number)
+                    println(it.firstNum)
+                    println(calcDividersSum(it.firstNum))
+                    println(it.secondNum)
+                    println(calcDividersSum(it.secondNum))
+                    println("-----")
                     it.result = true
                 }
                 it.firstNum++
@@ -121,7 +127,11 @@ object ProjectEulerProblemWithPerfectNumbers {
             ValueCarrier(),
             { it, _ -> it.divider <= number.absoluteValue / 2 + 1 },
             { it, _ ->
-                if (number.absoluteValue % it.divider == 0) {
+                if (
+                    number.absoluteValue % it.divider == 0
+                    && it.divider != number.absoluteValue
+                    && number != 0
+                ) {
                     it.result += it.divider
                 }
                 it.divider += 1
