@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "createdAt": "2011-10-05T14:48:00.000Z",
+    "updatedAt": "2015-10-05T14:48:00.000Z",
+    "name": "AlexisSparrow",
+    "email": "mister.alex49@yandex.ru",
+    "password": "someHashedPassword",
+    "verificationStatus": true,
+    "role": "admin",
+    "externalServicesId": [
+      "1"
+    ],
+    "externalRolesId": [
+      "2"
+    ]
+  }
+]

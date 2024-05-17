@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "createdAt": "2011-10-05T14:48:00.000Z",
+    "updatedAt": "2015-10-05T14:48:00.000Z",
+    "recognitionKey": "anapa360user",
+    "name": "Пользователь",
+    "default": true,
+    "description": "basic role in anapa service"
+  },
+  {
+    "id": 1,
+    "createdAt": "2011-10-05T14:48:00.000Z",
+    "updatedAt": "2015-10-05T14:48:00.000Z",
+    "recognitionKey": "anapa360admin",
+    "name": "Администратор",
+    "default": false,
+    "description": "role for administrator of anapa service"
+  }
+]
