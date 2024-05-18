@@ -1,15 +1,19 @@
 package ru.lexxv.university.auth.dto
 
-import org.springframework.web.bind.annotation.RequestParam
+import io.swagger.v3.oas.annotations.Parameter
+import org.springdoc.core.annotations.ParameterObject
 
 /**
  * Класс для конфигурации пагинации через rest api
  *
  * @author A.Vorobyev <mister.alex49@yandex.ru>
  * */
+@ParameterObject
 data class PaginationDto(
-    @RequestParam("page")
+    @Parameter(name="page")
     val page: Int = 0,
-    @RequestParam("perPage")
-    val perPage: Int = 10
-)
+    @Parameter(name="perPage")
+    val perPage: Int = 10,
+) {
+
+}

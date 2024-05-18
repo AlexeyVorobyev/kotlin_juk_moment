@@ -10,6 +10,6 @@ import ru.lexxv.university.auth.entity.User
  * */
 @Component
 class UserRepository : BaseRepository<User>(
-    source = "src/main/resources/data/users.json",
+    source = "data/users.json",
     entity = User::class.java
 )

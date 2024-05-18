@@ -11,3 +11,7 @@ spring:
     import: optional:file:.env[.properties]
   application:
     name: "auth-service-analytics"
+
+springdoc:
+  swagger-ui:
+    path: "/docs/swagger.html"

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "750ab313-4aca-4a2b-b21a-2b8316338c16",
+    "createdAt": "2011-10-05T14:48:00.000Z",
+    "updatedAt": "2015-10-05T14:48:00.000Z",
+    "name": "AlexisSparrow",
+    "email": "mister.alex49@yandex.ru",
+    "password": "someHashedPassword",
+    "verificationStatus": true,
+    "role": "ADMIN",
+    "externalServicesId": [
+      "8dd9b627-0761-4e02-b1f7-d9c3d9d6bb36"
+    ],
+    "externalRolesId": [
+      "ae85416a-229b-4562-b10f-0da6002f8a20"
+    ]
+  },
+  {
+    "id": "750ab313-4aca-4a2b-b21a-2b8316338c16",
+    "createdAt": "2050-10-05T14:48:00.000Z",
+    "updatedAt": "2150-10-05T14:48:00.000Z",
+    "name": "DuDastr",
+    "email": "mister.alex50@yandex.ru",
+    "password": "someHashedPassword",
+    "verificationStatus": false,
+    "role": "USER",
+    "externalServicesId": [],
+    "externalRolesId": []
+  },
+  {
+    "id": "750ab313-4aca-4a2b-b21a-2b8316338c16",
+    "createdAt": "1999-10-05T14:48:00.000Z",
+    "updatedAt": "2004-10-05T14:48:00.000Z",
+    "name": "DuDastrSon",
+    "email": "mister.son50@yandex.ru",
+    "password": "someHashedPassword",
+    "verificationStatus": true,
+    "role": "MODERATOR",
+    "externalServicesId": [],
+    "externalRolesId": []
+  },
+  {
+    "id": "750ab313-4aca-4a2b-b21a-2b8316338c16",
+    "createdAt": "2020-10-05T14:48:00.000Z",
+    "updatedAt": "2021-10-05T14:48:00.000Z",
+    "name": "KalebQuinn",
+    "email": "mister.alex50@yandex.ru",
+    "password": "someHashedPassword",
+    "verificationStatus": false,
+    "role": "USER",
+    "externalServicesId": [],
+    "externalRolesId": []
+  },
+  {
+    "id": "750ab313-4aca-4a2b-b21a-2b8316338c16",
+    "createdAt": "2020-10-05T14:48:00.000Z",
+    "updatedAt": "2021-10-05T14:48:00.000Z",
+    "name": "KalebQuinnSon",
+    "email": "mister.alex28@yandex.ru",
+    "password": "someHashedPassword",
+    "verificationStatus": true,
+    "role": "USER",
+    "externalServicesId": [
+      "63115625-bb33-440a-a4e6-1b9f2115f1cc"
+    ],
+    "externalRolesId": []
+  }
+]

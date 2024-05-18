@@ -6,6 +6,8 @@ import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
+import jakarta.validation.Valid
+import org.springdoc.core.annotations.ParameterObject
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -84,7 +86,7 @@ class AnalyticsController(
     fun getExternalServicesWithoutExternalRoles(paginationDto: PaginationDto) =
         analyticsService.findExternalServicesWithoutExternalRoles(paginationDto)
 
-    @Operation(summary = "олучение сервисов, в которых не учавствует ни один пользователь")
+    @Operation(summary = "Получение сервисов, в которых не учавствует ни один пользователь")
     @ApiResponses(
         ApiResponse(
             responseCode = "200",
