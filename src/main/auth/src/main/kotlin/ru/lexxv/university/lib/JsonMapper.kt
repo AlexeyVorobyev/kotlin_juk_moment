@@ -9,6 +9,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.treeToValue
 import ru.lexxv.university.auth.exceptions.MapperListException
 
+
 /**
  * Объект предоставляющий методы, для более удобной манипуляции с JSON структурами
  *

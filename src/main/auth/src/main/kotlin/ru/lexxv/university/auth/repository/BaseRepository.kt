@@ -3,10 +3,10 @@ package ru.lexxv.university.auth.repository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationContext
 import org.springframework.core.io.Resource
+import org.springframework.core.io.ResourceLoader
 import ru.lexxv.university.auth.entity.EntityInterface
 import ru.lexxv.university.lib.JsonMapper
 import java.io.BufferedReader
-import java.io.File
 import java.util.*
 
 
@@ -20,7 +20,7 @@ abstract class BaseRepository<T : EntityInterface>(
     private val source: String
 ) {
     @Autowired
-    private val ctx: ApplicationContext? = null
+    private var resourceLoader: ResourceLoader? = null
 
     /**
      * Функция поиска по id
@@ -78,7 +78,7 @@ abstract class BaseRepository<T : EntityInterface>(
      * @author A.Vorobyev <mister.alex49@yandex.ru>
      * */
     private fun getDataFromSource(): List<T> {
-        val resource: Resource = ctx!!.getResource("classpath:$source")
+        val resource: Resource = resourceLoader!!.getResource("classpath:$source")
         val bufferedReader: BufferedReader = resource.file.bufferedReader()
         val rawData = bufferedReader.readText()
 
