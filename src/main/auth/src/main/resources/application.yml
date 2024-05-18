@@ -1,0 +1,13 @@
+server:
+  port: ${SERVER_PORT:8080}
+  address: ${SERVER_ADDRESS:127.0.0.1}
+  max-http-request-header-size: 128KB
+  tomcat:
+    threads:
+      min-spare: 0
+
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: "auth-service-analytics"

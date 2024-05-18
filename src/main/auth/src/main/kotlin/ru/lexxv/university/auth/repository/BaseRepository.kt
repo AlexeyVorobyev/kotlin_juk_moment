@@ -40,7 +40,7 @@ abstract class BaseRepository<T : EntityInterface>(
      * */
     fun findAll(
         skip: Int = 0,
-        take: Int = 10,
+        take: Int = 10000,
         filter: ((T) -> Boolean)? = null,
         sort: ((T) -> Int)? = null
     ): List<T> = getDataFromSource().let {

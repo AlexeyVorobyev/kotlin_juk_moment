@@ -1,6 +1,7 @@
 package ru.lexxv.university.auth.service
 
 import org.springframework.stereotype.Service
+import ru.lexxv.university.auth.dto.PaginationDto
 import ru.lexxv.university.auth.entity.ExternalService
 import ru.lexxv.university.auth.entity.Role
 import ru.lexxv.university.auth.entity.User
@@ -24,8 +25,10 @@ class AnalyticsService(
     /**
      * Получение неверифицированных пользователей, которые были зарегестрированы раньше 2022 года
      * */
-    fun findUnverificatedUsers(): List<User> =
+    fun findUnverificatedUsers(paginationDto: PaginationDto = PaginationDto()): List<User> =
         userRepository.findAll(
+            skip = paginationDto.page * paginationDto.perPage,
+            take = (paginationDto.page + 1) * paginationDto.perPage,
             filter = { user: User ->
                 !user.verificationStatus && user.createdAt.isBefore(OffsetDateTime.parse("2022-10-05T14:48:00.000Z"))
             }
@@ -34,8 +37,10 @@ class AnalyticsService(
     /**
      * Получение пользователй с внутренней ролью, которая отлична от USER
      */
-    fun findUsersWithPrivilege(): List<User> =
+    fun findUsersWithPrivilege(paginationDto: PaginationDto = PaginationDto()): List<User> =
         userRepository.findAll(
+            skip = paginationDto.page * paginationDto.perPage,
+            take = (paginationDto.page + 1) * paginationDto.perPage,
             filter = { user: User ->
                 user.role != Role.USER
             }
@@ -44,8 +49,10 @@ class AnalyticsService(
     /**
      * Получение пользователй, у которых есть не стандартная внешняя роль
      */
-    fun findUsersWithNotDefaultExternalRoles(): List<User> =
+    fun findUsersWithNotDefaultExternalRoles(paginationDto: PaginationDto = PaginationDto()): List<User> =
         userRepository.findAll(
+            skip = paginationDto.page * paginationDto.perPage,
+            take = (paginationDto.page + 1) * paginationDto.perPage,
             filter = { user: User ->
                 user.externalRolesId.isNotEmpty() && externalRoleRepository.findAll(
                     filter = { externalRole ->
@@ -59,8 +66,10 @@ class AnalyticsService(
     /**
      * Получение сервисов, у которых нет ролей
      */
-    fun findExternalServicesWithoutExternalRoles(): List<ExternalService> =
+    fun findExternalServicesWithoutExternalRoles(paginationDto: PaginationDto = PaginationDto()): List<ExternalService> =
         externalServiceRepository.findAll(
+            skip = paginationDto.page * paginationDto.perPage,
+            take = (paginationDto.page + 1) * paginationDto.perPage,
             filter = { externalService ->
                 externalRoleRepository.findAll(
                     filter = { externalRole ->
@@ -73,8 +82,10 @@ class AnalyticsService(
     /**
      * Получение Сервисов, в которых не учавствует ни один пользователь
      */
-    fun findServicesWithoutUsers(): List<ExternalService> =
+    fun findServicesWithoutUsers(paginationDto: PaginationDto = PaginationDto()): List<ExternalService> =
         externalServiceRepository.findAll(
+            skip = paginationDto.page * paginationDto.perPage,
+            take = (paginationDto.page + 1) * paginationDto.perPage,
             filter = {externalService ->
                 userRepository.findAll(
                     filter = { user ->
