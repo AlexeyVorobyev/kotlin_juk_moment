@@ -10,6 +10,6 @@ import ru.lexxv.university.auth.entity.ExternalService
  * */
 @Component
 class ExternalServiceRepository : BaseRepository<ExternalService>(
-    source = "src/main/resources/data/externalRoles.json",
+    source = "src/main/resources/data/externalServices.json",
     entity = ExternalService::class.java
 )

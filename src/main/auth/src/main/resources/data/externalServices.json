@@ -4,7 +4,39 @@
     "createdAt": "2011-10-05T14:48:00.000Z",
     "updatedAt": "2015-10-05T14:48:00.000Z",
     "recognitionKey": "anapa360",
-    "name": "Anapa360",
+    "name": "Анапа 360",
     "description": "this cool service was developed by me and my fellow friend to bypass..."
+  },
+  {
+    "id": "68edcd82-4160-4192-803a-7a0f781afd2a",
+    "createdAt": "2011-10-05T14:48:00.000Z",
+    "updatedAt": "2015-10-05T14:48:00.000Z",
+    "recognitionKey": "monitoring",
+    "name": "Мониторинг и статистика",
+    "description": "this cool service was developed by me and my fellow friend to bypass..."
+  },
+  {
+    "id": "63115625-bb33-440a-a4e6-1b9f2115f1cc",
+    "createdAt": "2011-10-05T14:48:00.000Z",
+    "updatedAt": "2015-10-05T14:48:00.000Z",
+    "recognitionKey": "kiap",
+    "name": "Комплекс инормационной поддержки",
+    "description": null
+  },
+  {
+    "id": "bc416715-1e04-4fb3-873b-1a356a9b374e",
+    "createdAt": "2011-10-05T14:48:00.000Z",
+    "updatedAt": "2015-10-05T14:48:00.000Z",
+    "recognitionKey": "yacgp",
+    "name": "Yet Another Chess Game Platform",
+    "description": "this cool service was developed by me and my fellow friend to bypass..."
+  },
+  {
+    "id": "d1ea24a2-f88c-4b4b-899d-4499ba67f3d4",
+    "createdAt": "2011-10-05T14:48:00.000Z",
+    "updatedAt": "2015-10-05T14:48:00.000Z",
+    "recognitionKey": "clearvision",
+    "name": "Clear Vision",
+    "description": null
   }
 ]

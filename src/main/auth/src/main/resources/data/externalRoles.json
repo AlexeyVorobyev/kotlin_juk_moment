@@ -4,7 +4,7 @@
     "createdAt": "2011-10-05T14:48:00.000Z",
     "updatedAt": "2015-10-05T14:48:00.000Z",
     "recognitionKey": "anapa360user",
-    "externalService": "8dd9b627-0761-4e02-b1f7-d9c3d9d6bb36",
+    "externalServiceId": "8dd9b627-0761-4e02-b1f7-d9c3d9d6bb36",
     "name": "Пользователь",
     "default": true,
     "description": "basic role in anapa service"
@@ -14,9 +14,39 @@
     "createdAt": "2011-10-05T14:48:00.000Z",
     "updatedAt": "2015-10-05T14:48:00.000Z",
     "recognitionKey": "anapa360admin",
-    "externalService": "8dd9b627-0761-4e02-b1f7-d9c3d9d6bb36",
+    "externalServiceId": "8dd9b627-0761-4e02-b1f7-d9c3d9d6bb36",
     "name": "Администратор",
     "default": false,
     "description": "role for administrator of anapa service"
+  },
+  {
+    "id": "f8729e29-6a6b-4f3c-838b-76a27b9a9838",
+    "createdAt": "2011-10-05T14:48:00.000Z",
+    "updatedAt": "2015-10-05T14:48:00.000Z",
+    "recognitionKey": "yacgpuser",
+    "externalServiceId": "bc416715-1e04-4fb3-873b-1a356a9b374e",
+    "name": "Шахматист",
+    "default": true,
+    "description": "basic role in yacgp service"
+  },
+  {
+    "id": "3d688acb-8f66-49ae-86dc-fab1171d1fb5",
+    "createdAt": "2011-10-05T14:48:00.000Z",
+    "updatedAt": "2015-10-05T14:48:00.000Z",
+    "recognitionKey": "yacgpprivelegeduser",
+    "externalServiceId": "bc416715-1e04-4fb3-873b-1a356a9b374e",
+    "name": "Шахматист за деньги да",
+    "default": false,
+    "description": "pay to win user in yacgp"
+  },
+  {
+    "id": "4dbf1214-01f3-40c5-a476-db685dd3361b",
+    "createdAt": "2011-10-05T14:48:00.000Z",
+    "updatedAt": "2015-10-05T14:48:00.000Z",
+    "recognitionKey": "yacgptsarandgod",
+    "externalServiceId": "bc416715-1e04-4fb3-873b-1a356a9b374e",
+    "name": "Царь и бох",
+    "default": false,
+    "description": "Tsar ang God"
   }
 ]

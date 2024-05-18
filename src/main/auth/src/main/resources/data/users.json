@@ -50,5 +50,19 @@
     "role": "USER",
     "externalServicesId": [],
     "externalRolesId": []
+  },
+  {
+    "id": "750ab313-4aca-4a2b-b21a-2b8316338c16",
+    "createdAt": "2020-10-05T14:48:00.000Z",
+    "updatedAt": "2021-10-05T14:48:00.000Z",
+    "name": "KalebQuinnSon",
+    "email": "mister.alex28@yandex.ru",
+    "password": "someHashedPassword",
+    "verificationStatus": true,
+    "role": "USER",
+    "externalServicesId": [
+      "63115625-bb33-440a-a4e6-1b9f2115f1cc"
+    ],
+    "externalRolesId": []
   }
 ]

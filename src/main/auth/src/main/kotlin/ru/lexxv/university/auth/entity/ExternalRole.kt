@@ -8,7 +8,7 @@ import java.util.UUID
  * @param name {String} - Название сервиса
  * @param recognitionKey {String} - Ключ распознавания роли
  * @param description {String?} - Описание роли
- * @param externalService {UUID} - Внешний сервис роли
+ * @param externalServiceId {UUID} - Внешний сервис роли
  * @param default {Boolean} - Является ли роль стандартной (Выдаётся ли автоматически при регистрации)
  *
  * @author A.Vorobyev <mister.alex49@yandex.ru>
@@ -17,6 +17,6 @@ data class ExternalRole(
     var name: String,
     var recognitionKey: String,
     var description: String? = null,
-    var externalService: UUID,
+    var externalServiceId: UUID,
     var default: Boolean = false
 ) : BaseEntity()
