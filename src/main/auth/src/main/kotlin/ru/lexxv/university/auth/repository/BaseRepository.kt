@@ -13,7 +13,7 @@ import java.util.*
  * @author A.Vorobyev <mister.alex49@yandex.ru>
  * */
 abstract class BaseRepository<T : EntityInterface>(
-    private val entity: T,
+    private val entity: Class<T>,
     private val source: String
 ) {
     /**
@@ -27,8 +27,6 @@ abstract class BaseRepository<T : EntityInterface>(
      * Функция поиска одной сущности по фильтру
      *
      * @param filter {Int} - Критерий фильтрации
-     *
-     * @author A.Vorobyev <mister.alex49@yandex.ru>
      * */
     fun findOne(filter: ((T) -> Boolean)? = null): T = getDataFromSource().first {filter == null || filter(it) }
 
@@ -39,8 +37,6 @@ abstract class BaseRepository<T : EntityInterface>(
      * @param take {Int} - Сколько взять
      * @param filter {Int} - Критерий фильтрации
      * @param sort {Int} - Критерий сортировки
-     *
-     * @author A.Vorobyev <mister.alex49@yandex.ru>
      * */
     fun findAll(
         skip: Int = 0,
@@ -60,7 +56,7 @@ abstract class BaseRepository<T : EntityInterface>(
             itProcessed = listOf()
         }
         else if (skip + take > itProcessed.size - 1) {
-            itProcessed = itProcessed.subList(skip, itProcessed.size - 1)
+            itProcessed = itProcessed.subList(skip, itProcessed.size)
         }
         else {
             itProcessed = itProcessed.subList(skip, take)
@@ -79,7 +75,7 @@ abstract class BaseRepository<T : EntityInterface>(
         val bufferedReader: BufferedReader = File(source).bufferedReader()
         val rawData = bufferedReader.readText()
 
-        return JsonMapper.asList(JsonMapper.asJson(rawData), entity::class.java)
+        return JsonMapper.asList(JsonMapper.asJson(rawData), entity)
     }
 
 }
