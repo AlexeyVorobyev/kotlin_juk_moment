@@ -110,7 +110,7 @@ class TransportPassportTest {
     @Test
     fun `hashSet, binaryTreeSet and treeSet search test`() {
         val hashSet = passportsList.toHashSet()
-        val treeSet = TreeSet<TransportPassport>().let { it.addAll(passportsList); it }
+        val treeSet = TreeSet(passportsList)
         val binaryTreeSet = passportsList.toBinaryTreeSet()
 
         /**

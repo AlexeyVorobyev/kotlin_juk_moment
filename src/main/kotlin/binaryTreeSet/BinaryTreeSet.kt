@@ -60,7 +60,7 @@ class BinaryTreeSet<T : Comparable<T>>(
      *
      * @return {Boolean} - Возвращает булево значение (Внедрён/Не внедрён узел)
      * */
-    private fun insertNewNode(nodeToInsert: BinaryTreeSetNode<T>, currentNode: BinaryTreeSetNode<T>): Boolean {
+    private tailrec fun insertNewNode(nodeToInsert: BinaryTreeSetNode<T>, currentNode: BinaryTreeSetNode<T>): Boolean {
         if (comparator != null) {
             if (comparator!!.compare(nodeToInsert.value, currentNode.value) > 0) {
                 if (currentNode.right != null) {

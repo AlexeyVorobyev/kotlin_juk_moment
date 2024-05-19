@@ -24,7 +24,7 @@ class BinaryTreeSetIterator<T : Comparable<T>>(
         }
     }
 
-    private fun insertIntoArray(rootNode: BinaryTreeSetNode<T>) {
+    private tailrec fun insertIntoArray(rootNode: BinaryTreeSetNode<T>) {
         if (rootNode.left != null) {
             insertIntoArray(rootNode.left!!)
         }
