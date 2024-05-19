@@ -2,6 +2,7 @@ package document
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.fail
+import ru.lexxv.university.binaryTreeSet.toBinaryTreeSet
 import ru.lexxv.university.document.TransportPassport
 import java.time.OffsetDateTime
 import java.util.TreeSet
@@ -107,14 +108,14 @@ class TransportPassportTest {
      * Тестировка поиска в hashSet и treeSet
      * */
     @Test
-    fun `hashSet and treeSet search test`() {
+    fun `hashSet, binaryTreeSet and treeSet search test`() {
         val hashSet = passportsList.toHashSet()
         val treeSet = TreeSet<TransportPassport>().let { it.addAll(passportsList); it }
+        val binaryTreeSet = passportsList.toBinaryTreeSet()
 
         /**
          * ХешСет проводит сравнение по хешКоду и по equals
          * */
-
         assertEquals(
             3,
             hashSet.size
@@ -143,6 +144,19 @@ class TransportPassportTest {
         assertEquals(
             passportsList[2],
             treeSet.find { it == passportsList[2] }
+        )
+
+        assertEquals(
+            3,
+            binaryTreeSet.size
+        )
+        assertEquals(
+            passportsList[0],
+            binaryTreeSet.find { it == passportsList[0] }
+        )
+        assertEquals(
+            passportsList[2],
+            binaryTreeSet.find { it == passportsList[2] }
         )
     }
 }
