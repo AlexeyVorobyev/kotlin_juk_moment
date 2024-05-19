@@ -93,7 +93,6 @@ object FunctionsForCollections {
             { it, _ ->
                 if (
                     number.absoluteValue % it.divider == 0
-                    && it.divider != number.absoluteValue
                     && number != 0
                 ) {
                     it.result += 1
@@ -173,4 +172,93 @@ object FunctionsForCollections {
      * */
     fun findBetweenFirstAndLastMax(iterable: Iterable<Int>): List<Int> =
         iterable.toList().subList(1, iterable.indexOfLast { it == iterable.max() })
+
+    /**
+     * Функция поиска количества элементов из итерируемого объекта внутри диапазона
+     *
+     * @param iterable {Iterable<Int>} - итерируемый объект
+     * @param range {IntRange] - диапазон, отрезок
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun amountOfItemsInsideRange(iterable: Iterable<Int>, range: IntRange): Int =
+        iterable.filter { range.contains(it) }.size
+
+    /**
+     * Функция поиска количества минимальных элементов в итерируемом объекте
+     *
+     * @param iterable {Iterable<Int>} - итерируемый объект
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun countMin(iterable: Iterable<Int>): Int =
+        iterable.fold(object {
+            var min = iterable.firstOrNull() ?: 0
+            var count = 0
+        }) { acc, it ->
+            if (it < acc.min) {
+                acc.count = 1
+                acc.min = it
+            } else if (it == acc.min) {
+                acc.count += 1
+            }
+            acc
+        }.count
+
+    /**
+     * Функция, фильтрующая итерируемый объект так, чтобы остались элементы,
+     * которые больше чем среднее арифметическое, но меньше чем среднее значение
+     *
+     * @param iterable {Iterable<Int>} - итерируемый объект
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun filterByMeanAndMax(iterable: Iterable<Int>): List<Int> =
+        iterable.let {
+            object {
+                var mean = iterable.sum().toDouble() / iterable.count().let { if (it == 0) 1 else it }.toDouble()
+                var max = iterable.maxOrNull()
+            }
+        }.let {
+            if (it.max == null) {
+                iterable.toList()
+            } else {
+                iterable.filter { _it -> _it > it.mean && _it < it.max!! }
+            }
+        }
+
+    /**
+     * Функция, подсчитывающая среднее арифметическое непростых элементов,
+     * которые больше чем среднее арифметическое простых
+     *
+     * @param iterable {Iterable<Int>} - итерируемый объект
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun findMeanInNotPrimaryItemsWhichLargerThanMeanOfPrimaryItems(iterable: Iterable<Int>): Double =
+        iterable.fold(object {
+            var primaryItems = mutableListOf<Int>()
+            var nonPrimaryItems = mutableListOf<Int>()
+        }) { acc, it ->
+            if (calcDividersAmount(it) == 2) {
+                acc.primaryItems.add(it)
+            } else {
+                acc.nonPrimaryItems.add(it)
+            }
+            acc
+        }.let {
+            val primaryItemsMean = it.primaryItems.sum().toDouble() / it.primaryItems.size.toDouble()
+            it.nonPrimaryItems.fold(object {
+                var sum = 0
+                var count = 0
+            }) { acc, number ->
+                if (number > primaryItemsMean) {
+                    acc.sum += number
+                    acc.count += 1
+                }
+                acc
+            }
+        }.let {
+            it.sum.toDouble() / it.count.toDouble()
+        }
 }

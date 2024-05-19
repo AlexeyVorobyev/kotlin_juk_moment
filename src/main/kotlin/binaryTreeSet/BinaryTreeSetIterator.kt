@@ -19,11 +19,9 @@ class BinaryTreeSetIterator<T : Comparable<T>>(
 
 
     init {
-        println(size)
         if (rootNode != null) {
             insertIntoArray(rootNode)
         }
-        index = 0
     }
 
     private fun insertIntoArray(rootNode: BinaryTreeSetNode<T>) {

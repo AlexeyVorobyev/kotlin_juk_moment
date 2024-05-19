@@ -85,4 +85,37 @@ class FunctionsForCollectionsTest {
         assertEquals(listOf(2,3), func(listOf(1,2,3,4)))
         assertEquals(listOf(2,3,4), func(listOf(1,2,3,4,4)))
     }
+
+    @Test
+    fun `amountOfItemsInsideRange test`() {
+        val func = FunctionsForCollections::amountOfItemsInsideRange
+
+        assertEquals(3, func(listOf(1,2,3,4), 2..4))
+        assertEquals(4, func(listOf(1,2,3,4,4), 2..4))
+    }
+
+    @Test
+    fun `countMin test`() {
+        val func = FunctionsForCollections::countMin
+
+        assertEquals(1, func(listOf(1,2,3,4)))
+        assertEquals(4, func(listOf(1,1,1,1,2,3,4,4)))
+        assertEquals(0, func(listOf()))
+    }
+
+    @Test
+    fun `filterByMeanAndMax test`() {
+        val func = FunctionsForCollections::filterByMeanAndMax
+
+        assertEquals(listOf(3), func(listOf(1,2,3,4)))
+        assertEquals(listOf(2,3), func(listOf(1,1,1,1,1,1,2,3,4,4)))
+        assertEquals(listOf(), func(listOf()))
+    }
+
+    @Test
+    fun `findMeanInNotPrimaryItemsWhichLargerThanMeanOfPrimaryItems test`() {
+        val func = FunctionsForCollections::findMeanInNotPrimaryItemsWhichLargerThanMeanOfPrimaryItems
+
+        assertEquals(17.5, func(listOf(3,7, 20, 15)))
+    }
 }
