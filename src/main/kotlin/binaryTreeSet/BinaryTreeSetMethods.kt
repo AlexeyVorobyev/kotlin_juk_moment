@@ -6,11 +6,9 @@ package ru.lexxv.university.binaryTreeSet
  * @author A.Vorobyev <mister.alex49@yandex.ru>
  * */
 
-inline fun <reified T : Comparable<T>> emptyBinaryTreeSet() = BinaryTreeSet<T>()
+inline fun <reified T : Comparable<T>> emptyBinaryTreeSet(): BinaryTreeSet<T> = BinaryTreeSet()
 
-inline fun <reified T : Comparable<T>> binaryTreeSetOf(vararg elements: T) =
+inline fun <reified T : Comparable<T>> binaryTreeSetOf(vararg elements: T): BinaryTreeSet<T> =
     if (elements.isNotEmpty()) BinaryTreeSet(elements.asList()) else emptyBinaryTreeSet()
 
-fun <T: Comparable<T>> Iterable<T>.toBinaryTreeSet(): BinaryTreeSet<T> {
-    return BinaryTreeSet<T>(this)
-}
+fun <T : Comparable<T>> Iterable<T>.toBinaryTreeSet(): BinaryTreeSet<T> = BinaryTreeSet(this)

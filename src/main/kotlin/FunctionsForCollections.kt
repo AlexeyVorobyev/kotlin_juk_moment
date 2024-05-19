@@ -3,6 +3,7 @@ package ru.lexxv.university
 import ru.lexxv.university.RecursiveHelperFunctions.recursiveIterateConstructor
 import kotlin.math.absoluteValue
 import kotlin.math.max
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 object FunctionsForCollections {
@@ -260,5 +261,158 @@ object FunctionsForCollections {
             }
         }.let {
             it.sum.toDouble() / it.count.toDouble()
+        }
+
+    /**
+     * Результат вычисления processIterableToCortege
+     * @see processIterableToCortege
+     *
+     * @property firstList - содержит результат деления на два только четных элементов исходного
+     * @property secondList - содержит результат деления на три только тех элементов первого, которые делятся на три
+     * @property thirdList - содержит квадраты значений второго списка
+     * @property fourthList - содержит только те элементы третьего, которые встречаются в первом
+     * @property fifthList - содержит все элементы второго, третьего и четвертого списков
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    data class ProcessIterableToCortegeResult(
+        var firstList: List<Int>? = null,
+        var secondList: List<Int>? = null,
+        var thirdList: List<Int>? = null,
+        var fourthList: List<Int>? = null,
+        var fifthList: List<Int>? = null
+    )
+
+    /**
+     * Функция, ставящая в соответсвие итерируемому объекту кортеж из 5 списков ProcessIterableToCortegeResult
+     * @see ProcessIterableToCortegeResult
+     *
+     * @param iterable {Iterable<Int>} - итерируемый объект
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun processIterableToCortege(iterable: Iterable<Int>): ProcessIterableToCortegeResult =
+        ProcessIterableToCortegeResult()
+            .let { cortege ->
+                cortege.firstList = iterable
+                    .filter { it % 2 == 0 }
+                    .map { it / 2 }
+                cortege
+            }
+            .let { cortege ->
+                cortege.secondList = cortege.firstList!!
+                    .filter { it % 3 == 0 }
+                    .map { it / 3 }
+                cortege
+            }
+            .let { cortege ->
+                cortege.thirdList = cortege.secondList!!
+                    .map { it.toDouble().pow(2.0).toInt() }
+                cortege
+            }
+            .let { cortege ->
+                cortege.fourthList = cortege.thirdList!!
+                    .filter { cortege.firstList!!.contains(it) }
+                cortege
+            }
+            .let { cortege ->
+                cortege.fifthList = listOf(
+                    *cortege.secondList!!.toTypedArray(),
+                    *cortege.thirdList!!.toTypedArray(),
+                    *cortege.fourthList!!.toTypedArray()
+                )
+                cortege
+            }
+
+    /**
+     * Функция возвращающая все делители числа
+     *
+     * @param number {Int} - число
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    private fun calcDividers(number: Int): List<Int> =
+        recursiveIterateConstructor(
+            object {
+                var divider: Int = 1
+                var result: MutableList<Int> = mutableListOf()
+            },
+            { it, _ -> it.divider <= number.absoluteValue },
+            { it, _ ->
+                if (
+                    number.absoluteValue % it.divider == 0
+                    && number != 0
+                ) {
+                    it.result.add(it.divider)
+                }
+                it.divider += 1
+                it
+            }
+        )().result
+
+    /**
+     * Функция, сортирующая итерируемый объект по некоторому параметру P(a)
+     * P(a) - сумма делителей числа а, которые являются делителями хотя бы одного из
+     * элементов списка, стоящих на четных позициях и не являются делителями ни одного из
+     * элементов, которые меньше среднего арифметического данного списка
+     *
+     * @param iterable {Iterable<Int>} - итерируемый объект
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun sortIterableByParameter(iterable: Iterable<Int>) =
+        (iterable.sum().toDouble() / iterable.count().let { if (it == 0) 1 else it }.toDouble())
+            .let { mean ->
+                object {
+                    var evenPositionItemsDividers = iterable
+                        .filterIndexed { index, _ -> index % 2 == 0 }
+                        .flatMap { calcDividers(it) }
+                    var lessThanMeanItemsDividers = iterable
+                        .filter { it < mean }
+                        .flatMap { calcDividers(it) }
+                    var weightForNumber: Map<Int, Int>? = iterable
+                        .toSet().associateWith { number ->
+                            calcDividers(number).filter {
+                                this.evenPositionItemsDividers.contains(it)
+                                        && !this.lessThanMeanItemsDividers.contains(it)
+                            }.sum()
+                        }
+                }
+            }.let { carrier ->
+                iterable.sortedBy {
+                    carrier.weightForNumber?.get(it) ?: 0
+                }
+            }
+
+    /**
+     * Функция, преобразующий исходный итерируемый объект в список из кортежей
+     * (число, сумма предыдущих, количество элементов в списке больше заданного).
+     * фильтрует по
+     * - больше, чем сумма всех предыдущих в исходном списке,
+     * - являются полным квадратом одного из элементов исходного списка,
+     * - делятся на все предыдущие элементы исходного списка.
+     *
+     * @param iterable {Iterable<Int>} - итерируемый объект
+     *
+     * @author A.Vorobyev <mister.alex49@yandex.ru>
+     * */
+    fun iterableToTriple(iterable: Iterable<Int>) =
+        iterable.filterIndexed { index, item ->
+            item > iterable.toList().subList(0, index).sum() &&
+                    item.toDouble().let { sqr ->
+                        sqr.rem(1).equals(0.0)
+                                && iterable.contains(sqr.toInt())
+                    } &&
+                    iterable.fold(true) { acc, it ->
+                        if (item % it == 0) acc else false
+                    }
+        }.let { resultList ->
+            resultList.mapIndexed { index, item ->
+                Triple(
+                    item,
+                    resultList.subList(0, index).sum(),
+                    resultList.filter { it > item }
+                )
+            }
         }
 }

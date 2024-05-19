@@ -118,4 +118,23 @@ class FunctionsForCollectionsTest {
 
         assertEquals(17.5, func(listOf(3,7, 20, 15)))
     }
+
+    @Test
+    fun `processIterableToCortege test`() {
+        val func = FunctionsForCollections::processIterableToCortege
+        val result = func(listOf(3,7, 20, 15, 15, 6))
+        assertEquals(listOf(10,3), result.firstList)
+        assertEquals(listOf(1), result.secondList)
+        assertEquals(listOf(1), result.thirdList)
+        assertEquals(listOf(), result.fourthList)
+        assertEquals(listOf(1,1), result.fifthList)
+    }
+
+    @Test
+    fun `sortIterableByParameter test`() {
+        val func = FunctionsForCollections::sortIterableByParameter
+        val result = func(listOf(10,1,1,1,5))
+
+        println(result)
+    }
 }
