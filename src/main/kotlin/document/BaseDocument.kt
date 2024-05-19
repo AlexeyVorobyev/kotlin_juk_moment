@@ -32,7 +32,7 @@ abstract class BaseDocument(
 
     override fun compareTo(other: BaseDocument): Int = compareValuesBy(
         this, other
-    ) { it.dateOfIssue.toEpochSecond() }
+    ) { it.series + it.number }
 
     override fun equals(other: Any?): Boolean {
         if (other == null) return false
@@ -47,8 +47,7 @@ abstract class BaseDocument(
     }
 
     override fun hashCode(): Int {
-        var result = validator.hashCode()
-        result = 31 * result + series.hashCode()
+        var result = series.hashCode()
         result = 31 * result + number.hashCode()
         return result
     }

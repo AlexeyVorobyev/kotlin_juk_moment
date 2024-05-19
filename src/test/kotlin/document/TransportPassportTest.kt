@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.fail
 import ru.lexxv.university.document.TransportPassport
 import java.time.OffsetDateTime
+import java.util.TreeSet
 import kotlin.test.assertEquals
 
 class TransportPassportTest {
@@ -40,7 +41,7 @@ class TransportPassportTest {
             vin = "KMHSU81CDWU110287",
             series = "78УА",
             number = "334097",
-            dateOfIssue = OffsetDateTime.parse("2011-10-05T14:48:00.000Z"),
+            dateOfIssue = OffsetDateTime.parse("2014-10-05T14:48:00.000Z"),
             model = "Тесла киберкряк",
             weight = 2000
         ),
@@ -92,15 +93,56 @@ class TransportPassportTest {
     @Test
     fun `comparable сustom test`() {
         passportsList.sortedWith { it1, it2 ->
-            if ("${it1.series}${it1.number}" > "${it2.series}${it2.number}") {
+            if (it1.dateOfIssue.toEpochSecond() > it2.dateOfIssue.toEpochSecond()) {
                 1
-            }
-            else if ("${it1.series}${it1.number}" < "${it2.series}${it2.number}") {
+            } else if (it1.dateOfIssue.toEpochSecond() < it2.dateOfIssue.toEpochSecond()) {
                 -1
-            }
-            else 0
+            } else 0
         }.forEach {
             print("$it\n")
         }
+    }
+
+    /**
+     * Тестировка поиска в hashSet и treeSet
+     * */
+    @Test
+    fun `hashSet and treeSet search test`() {
+        val hashSet = passportsList.toHashSet()
+        val treeSet = TreeSet<TransportPassport>().let { it.addAll(passportsList); it }
+
+        /**
+         * ХешСет проводит сравнение по хешКоду и по equals
+         * */
+
+        assertEquals(
+            3,
+            hashSet.size
+        )
+        assertEquals(
+            passportsList[0],
+            hashSet.find { it == passportsList[0] }
+        )
+        assertEquals(
+            passportsList[2],
+            hashSet.find { it == passportsList[2] }
+        )
+
+        /**
+         * ТриСет проводит сравнение используя comapreTo,
+         * а значит treeSet требует, чтобы его элементы имплементировали интерфейс Comparable<T>
+         * */
+        assertEquals(
+            3,
+            treeSet.size
+        )
+        assertEquals(
+            passportsList[0],
+            treeSet.find { it == passportsList[0] }
+        )
+        assertEquals(
+            passportsList[2],
+            treeSet.find { it == passportsList[2] }
+        )
     }
 }
